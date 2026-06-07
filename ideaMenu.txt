@@ -1,0 +1,10 @@
+=== GESTIONALE BIBLIOTECA ===
+1. Inserisci un nuovo libro
+2. Cerca un libro (per titolo/autore)
+3. Cerca libro istantaneo (per ID)
+4. Prendi in prestito un libro (gestione coda)
+5. Mostra ultimi libri restituiti (pila)
+6. Stampa catalogo ordinato alfabeticamente
+7. Mostra statistiche biblioteca (ricorsione)
+8. Elimina un libro inservibile
+9. Salva ed Esci
