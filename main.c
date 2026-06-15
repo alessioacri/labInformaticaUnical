@@ -14,3 +14,28 @@ int main() {
     CodaAttesa codaPrestiti;
     initCoda(&codaPrestiti);
     NodoPila* pilaResi = NULL;
+
+    catalogo = caricaDaFileBinario("biblioteca.dat", tabellaHash);
+    printf("[SISTEMA] Caricati i dati dal file binario 'biblioteca.dat'.\n");
+
+    int scelta;
+    char bufferID[MAX_STR], bufferStringa[MAX_STR], bufferUtente[MAX_STR];
+
+    do {
+        printf("\n=== GESTIONALE BIBLIOTECA ===\n");
+        printf("1. Inserisci un nuovo libro\n");
+        printf("2. Cerca un libro (per titolo/autore)\n");
+        printf("3. Cerca libro istantaneo (per ID)\n");
+        printf("4. Gestione Prestiti e Restituzioni\n");
+        printf("5. Mostra cronologia ultimi libri restituiti (pila)\n");
+        printf("6. Stampa catalogo ordinato alfabeticamente\n");
+        printf("7. Mostra statistiche biblioteca (ricorsione)\n");
+        printf("8. Rimuovi interamente un libro dal catalogo\n");
+        printf("9. Riduci di 1 il numero di copie (Scarto copia rovinata)\n");
+        printf("10. Salva ed Esci\n");
+        printf("Scegli un'opzione: ");
+
+        scanf("%d", &scelta);
+        getchar();
+
+}
