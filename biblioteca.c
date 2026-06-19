@@ -76,3 +76,41 @@ NodoLista* inserisciLibro(NodoLista* testa, Libro l, NodoHash* tabellaHash[]) {
     printf("[OK] Libro inserito con successo nel catalogo.\n");
     return testa;
 }
+
+// 2. Cerca un libro per titolo o autore (Scansione lineare con stringhe)
+void cercaLibro(NodoLista* testa, char* query) {
+    NodoLista* curr = testa;
+    int trovati = 0;
+    while(curr != NULL) {
+        // L1 - Uso di strstr per verificare se la query è contenuta nel titolo o autore
+        if(strstr(curr->info.titolo, query) != NULL || strstr(curr->info.autore, query) != NULL) {
+            printf("- [%s] %s di %s (Copie disponibili: %d)\n",
+                   curr->info.id, curr->info.titolo, curr->info.autore, curr->info.copie);
+            trovati++;
+        }
+        curr = curr->next;
+    }
+    if(trovati == 0) printf("[X] Nessun libro corrisponde ai criteri di ricerca.\n");
+}
+
+// 8. Elimina un libro inservibile
+NodoLista* eliminaLibro(NodoLista* testa, char* id, NodoHash* tabellaHash[]) {
+    NodoLista* curr = testa;
+    NodoLista* prev = NULL;
+
+    while(curr != NULL) {
+        if(strcmp(curr->info.id, id) == 0) {
+            rimuoviDallHash(tabellaHash, id);
+            if(prev == NULL) testa = curr->next;
+            else prev->next = curr->next;
+
+            free(curr); // L6b - Deallocazione della memoria liberata
+            printf("[OK] Libro eliminato dal sistema.\n");
+            return testa;
+        }
+        prev = curr;
+        curr = curr->next;
+    }
+    printf("[X] Errore: Libro non trovato.\n");
+    return testa;
+}
