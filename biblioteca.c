@@ -114,3 +114,37 @@ NodoLista* eliminaLibro(NodoLista* testa, char* id, NodoHash* tabellaHash[]) {
     printf("[X] Errore: Libro non trovato.\n");
     return testa;
 }
+
+// L13 - Funzioni della Coda (Queue)
+void initCoda(CodaAttesa* q) {
+    q->head = NULL;
+    q->tail = NULL;
+}
+
+void enqueue(CodaAttesa* q, char* nome) {
+    NodoCoda* nuovo = (NodoCoda*)malloc(sizeof(NodoCoda));
+    strcpy(nuovo->nomeUtente, nome);
+    nuovo->next = NULL;
+    if(q->tail == NULL) {
+        q->head = nuovo;
+        q->tail = nuovo;
+    } else {
+        q->tail->next = nuovo;
+        q->tail = nuovo;
+    }
+}
+
+char* dequeue(CodaAttesa* q) {
+    if(q->head == NULL) return NULL;
+    NodoCoda* temp = q->head;
+    char* nome = (char*)malloc(MAX_STR * sizeof(char));
+    strcpy(nome, temp->nomeUtente);
+    q->head = q->head->next;
+    if(q->head == NULL) q->tail = NULL;
+    free(temp);
+    return nome;
+}
+
+int codaVuota(CodaAttesa* q) {
+    return q->head == NULL;
+}
